@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Budget Planner & Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Smart Budget Planner</h1>
+      <p class="tagline">Track your monthly budget, expenses, and visualize spending by category.</p>
+    </header>
+
+    <main class="main-grid">
+      <!-- Left column: controls + form -->
+      <section class="card controls">
+        <h2>Budget</h2>
+        <div class="budget-row">
+          <input type="number" id="budgetInput" placeholder="Set monthly budget (₹)" min="0" />
+          <button id="setBudgetBtn" class="btn primary">Set Budget</button>
+        </div>
+        <p class="muted">Tip: set your monthly budget first to track remaining amount correctly.</p>
+
+        <hr />
+
+        <h2>Add Expense</h2>
+        <form id="expenseForm" class="form">
+          <div class="form-row">
+            <label>Amount (₹)</label>
+            <input type="number" id="expenseAmount" placeholder="e.g. 499" min="0.01" step="0.01" required>
+          </div>
+
+          <div class="form-row">
+            <label>Category</label>
+            <select id="expenseCategory" required>
+              <option value="">Select category</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Shopping</option>
+              <option>Entertainment</option>
+              <option>Subscription</option>
+              <option>Groceries</option>
+              <option>Health</option>
+              <option>Education</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Description</label>
+            <input type="text" id="expenseDesc" placeholder="e.g. Uber to office (optional)">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Add Expense</button>
+            <button type="button" id="clearAllBtn" class="btn danger">Clear All</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right column: summary + chart + list -->
+      <section class="card dashboard">
+        <div class="summary-row">
+          <div class="summary-card">
+            <small>Total Budget</small>
+            <div class="summary-value" id="totalBudget">₹0</div>
+          </div>
+          <div class="summary-card">
+            <small>Total Spent</small>
+            <div class="summary-value" id="totalSpent">₹0</div>
+          </div>
+          <div class="summary-card">
+            <small>Remaining</small>
+            <div class="summary-value" id="remaining">₹0</div>
+          </div>
+          <div class="summary-card">
+            <small>Top Category</small>
+            <div class="summary-value" id="topCategory">—</div>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <small>Budget Usage</small>
+          <div class="progress-bar-outer">
+            <div class="progress-bar-inner" id="usageBar" style="width:0%"></div>
+          </div>
+          <div class="progress-meta">
+            <span id="usagePercent">0%</span>
+            <span id="budgetAlert" class="alert-msg"></span>
+          </div>
+        </div>
+
+        <hr />
+
+        <h3>Spending by Category</h3>
+        <div class="chart" id="barChart" aria-hidden="false">
+          <!-- Bars inserted dynamically -->
+        </div>
+
+        <hr />
+
+        <h3>Expenses</h3>
+        <div class="expense-list card" id="expenseListWrap">
+          <table id="expenseTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="expenseTbody">
+              <!-- rows -->
+            </tbody>
+          </table>
+          <div class="table-foot">
+            <button id="downloadReport" class="btn secondary">Download Report (PDF)</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>Built with ❤️ • Vanilla HTML, CSS & JavaScript • Data stored locally</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
