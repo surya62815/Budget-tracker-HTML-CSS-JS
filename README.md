@@ -1,5 +1,5 @@
 
-# 💰 Smart Budget Tracker
+# 💰 Budget Tracker
 
 A modern, responsive web application to track your income, expenses, and savings with intuitive visualizations and smart insights.
 
